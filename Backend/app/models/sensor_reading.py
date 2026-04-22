@@ -6,6 +6,8 @@ from sqlalchemy.dialects.postgresql import JSONB
 
 
 class SensorReading(SQLModel, table=True):
+    __tablename__ = "sensor_readings"
+
     id: Optional[int] = Field(default=None, primary_key=True)
     device_id: str = Field(index=True)
     recorded_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc), index=True)
