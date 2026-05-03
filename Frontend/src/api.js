@@ -16,3 +16,18 @@ export async function fetchMeasurementHistory(limit = 20) {
   const response = await api.get(`/api/measurements/history?limit=${limit}`);
   return response.data;
 }
+
+export async function fetchMeasurementSummary(hours = 24) {
+  const response = await api.get(`/api/measurements/summary?hours=${hours}`);
+  return response.data;
+}
+
+export async function fetchCurrentAssessment() {
+  const response = await api.get("/api/ai/current-assessment");
+  return response.data;
+}
+
+export async function fetchGymAgentAssessment() {
+  const response = await api.get("/api/ai/gym-agent-assessment");
+  return response.data;
+}

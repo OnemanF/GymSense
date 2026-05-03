@@ -1,0 +1,37 @@
+﻿[
+  {
+    "id": "gym_temperature_comfort",
+    "topic": "temperature",
+    "content": "In a gym environment, temperatures around 18 to 24 degrees Celsius are generally comfortable for most training sessions."
+  },
+  {
+    "id": "gym_warm_conditions",
+    "topic": "temperature",
+    "content": "Temperatures between 25 and 27 degrees Celsius may feel warm during intense exercise, but should normally be described as a comfort issue, not a dangerous situation."
+  },
+  {
+    "id": "gym_high_temperature",
+    "topic": "temperature",
+    "content": "If gym temperature rises above 28 degrees Celsius, users may experience reduced comfort during hard training. Recommendations should focus on airflow, ventilation, hydration and monitoring."
+  },
+  {
+    "id": "gym_humidity_comfort",
+    "topic": "humidity",
+    "content": "Relative humidity around 40 to 60 percent is generally acceptable in a gym. Humidity slightly above 60 percent can feel stuffy during training."
+  },
+  {
+    "id": "gym_humidity_ventilation",
+    "topic": "humidity",
+    "content": "If humidity remains elevated while temperature is stable, the likely recommendation is improved ventilation or airflow rather than describing the room as unsafe."
+  },
+  {
+    "id": "gym_light_experimental",
+    "topic": "light",
+    "content": "The light sensor in this prototype is not calibrated in lux and should be treated as experimental. It should not be used as a primary risk factor in AI recommendations."
+  },
+  {
+    "id": "bme680_future_extension",
+    "topic": "air_quality",
+    "content": "A future BME680 sensor could add gas resistance measurements, which may support more advanced indoor air quality assessment. Until then, air quality conclusions should be conservative."
+  }
+]

@@ -5,3 +5,14 @@ sqlalchemy
 psycopg[binary]
 python-dotenv
 pydantic-settings
+requests
+
+mcp
+langchain
+langchain-ollama
+langchain-mcp-adapters
+langgraph
+langchain-core
+
+pytest
+httpx

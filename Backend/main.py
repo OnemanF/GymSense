@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.database import create_db_and_tables
 from app.api.measurements import router as measurements_router
+from app.api.ai import router as ai_router
 
 app = FastAPI(title=settings.app_name)
 
@@ -22,4 +23,9 @@ app.add_middleware(
 def on_startup():
     create_db_and_tables()
 
+@app.get("/")
+def root():
+    return {"message": "Gymsense API is running"}
+
 app.include_router(measurements_router)
+app.include_router(ai_router)
