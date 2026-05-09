@@ -1,6 +1,8 @@
 ﻿from datetime import datetime, timezone, timedelta
 from sqlmodel import Session, select
+
 from app.models.sensor_reading import SensorReading
+from app.services.data_quality_service import DataQualityService
 
 
 class MeasurementSummaryService:
@@ -9,9 +11,33 @@ class MeasurementSummaryService:
         statement = (
             select(SensorReading)
             .order_by(SensorReading.recorded_at.desc())
-            .limit(1)
+            .limit(20)
         )
-        return session.exec(statement).first()
+
+        readings = session.exec(statement).all()
+
+        for reading in readings:
+            if DataQualityService.is_valid_reading(reading):
+                return reading
+
+        return None
+
+    @staticmethod
+    def get_history(session: Session, limit: int = 100):
+        statement = (
+            select(SensorReading)
+            .order_by(SensorReading.recorded_at.desc())
+            .limit(limit * 3)
+        )
+
+        readings = session.exec(statement).all()
+
+        valid_readings = [
+            reading for reading in readings
+            if DataQualityService.is_valid_reading(reading)
+        ]
+
+        return valid_readings[:limit]
 
     @staticmethod
     def get_summary(session: Session, hours: int = 24):
@@ -24,6 +50,11 @@ class MeasurementSummaryService:
         )
 
         readings = session.exec(statement).all()
+
+        readings = [
+            reading for reading in readings
+            if DataQualityService.is_valid_reading(reading)
+        ]
 
         if not readings:
             return {
@@ -41,9 +72,9 @@ class MeasurementSummaryService:
                 "latestLightCategory": None,
             }
 
-        temperatures = [r.temperature for r in readings if r.temperature is not None]
-        humidities = [r.humidity for r in readings if r.humidity is not None]
-        pressures = [r.pressure for r in readings if r.pressure is not None]
+        temperatures = [r.temperature for r in readings]
+        humidities = [r.humidity for r in readings]
+        pressures = [r.pressure for r in readings]
 
         latest = readings[-1]
 
@@ -54,13 +85,13 @@ class MeasurementSummaryService:
             "hours": hours,
             "count": len(readings),
             "avgTemperature": avg(temperatures),
-            "minTemperature": min(temperatures) if temperatures else None,
-            "maxTemperature": max(temperatures) if temperatures else None,
+            "minTemperature": min(temperatures),
+            "maxTemperature": max(temperatures),
             "avgHumidity": avg(humidities),
-            "minHumidity": min(humidities) if humidities else None,
-            "maxHumidity": max(humidities) if humidities else None,
+            "minHumidity": min(humidities),
+            "maxHumidity": max(humidities),
             "avgPressure": avg(pressures),
-            "minPressure": min(pressures) if pressures else None,
-            "maxPressure": max(pressures) if pressures else None,
+            "minPressure": min(pressures),
+            "maxPressure": max(pressures),
             "latestLightCategory": latest.light_category,
         }

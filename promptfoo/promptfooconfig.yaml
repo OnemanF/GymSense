@@ -1,0 +1,86 @@
+﻿description: Gymsense gym environment prompt evaluation
+
+prompts:
+  - file://gym_environment_prompt.txt
+
+providers:
+  - id: ollama:chat:phi3:mini
+    config:
+      temperature: 0.2
+
+tests:
+  - description: Normal gym conditions should be low risk
+    vars:
+      temperature: 22
+      humidity: 45
+      pressure: 1024
+      light: Bright
+    assert:
+      - type: contains
+        value: "Risk level"
+      - type: not-contains
+        value: "emergency"
+      - type: not-contains
+        value: "dangerous"
+      - type: not-contains
+        value: "fire"
+      - type: not-contains
+        value: "heatstroke"
+
+  - description: Warm gym should be comfort issue, not emergency
+    vars:
+      temperature: 26.5
+      humidity: 55
+      pressure: 1024
+      light: Bright
+    assert:
+      - type: not-contains
+        value: "emergency"
+      - type: not-contains
+        value: "fire"
+      - type: not-contains
+        value: "heatstroke"
+      - type: not-contains
+        value: "severe danger"
+
+  - description: High humidity should recommend ventilation
+    vars:
+      temperature: 23
+      humidity: 65
+      pressure: 1024
+      light: Bright
+    assert:
+      - type: contains
+        value: "ventilation"
+      - type: not-contains
+        value: "dangerous"
+      - type: not-contains
+        value: "emergency"
+
+  - description: Dark light should not dominate risk
+    vars:
+      temperature: 22
+      humidity: 45
+      pressure: 1024
+      light: Dark
+    assert:
+      - type: not-contains
+        value: "unsafe"
+      - type: not-contains
+        value: "emergency"
+      - type: not-contains
+        value: "dangerous"
+
+  - description: Very bad sensor value should be treated carefully
+    vars:
+      temperature: 182
+      humidity: 100
+      pressure: -172
+      light: Bright
+    assert:
+      - type: contains
+        value: "sensor"
+      - type: not-contains
+        value: "fire"
+      - type: not-contains
+        value: "equipment damage"
