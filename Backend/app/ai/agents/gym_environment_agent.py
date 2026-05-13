@@ -43,8 +43,10 @@ You must use:
 3. Retrieved guideline snippets
 
 Focus mainly on temperature and humidity.
-The light sensor is experimental and should not affect the risk level.
-Mention light only if it clearly supports the overall assessment, otherwise ignore it.
+Use gas resistance and air quality label as prototype indicators of air quality.
+They can support the assessment, but should not be treated as certified air quality measurements.
+Do not make severe health claims based only on gas resistance.
+If air quality is Poor, recommend ventilation and monitoring rather than describing the gym as dangerous.
 
 Data quality rule:
 If temperature is below -10 C, above 60 C, pressure is below 800 hPa, or pressure is above 1100 hPa, treat the data as invalid sensor data.

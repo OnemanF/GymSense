@@ -15,7 +15,8 @@ class RAGService:
 
         temperature = latest.get("temperature")
         humidity = latest.get("humidity")
-        light_category = latest.get("light_category")
+        gas_resistance = latest.get("gas_resistance")
+        air_quality_label = latest.get("air_quality_label")
 
         for doc in self.documents:
             topic = doc["topic"]
@@ -23,15 +24,16 @@ class RAGService:
 
             if topic == "temperature" and temperature is not None:
                 include = True
+
             elif topic == "humidity" and humidity is not None:
                 include = True
-            elif topic == "light" and light_category is not None:
-                include = True
-            elif topic == "ventilation" and humidity is not None and humidity > 60:
-                include = True
+
+            elif topic == "air_quality":
+                if gas_resistance is not None or air_quality_label is not None:
+                    include = True
 
             if include and doc["id"] not in seen_ids:
                 results.append(doc)
                 seen_ids.add(doc["id"])
 
-        return results[:4]
+        return results[:5]

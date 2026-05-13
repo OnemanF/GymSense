@@ -17,10 +17,6 @@ class SensorReading(SQLModel, table=True):
     pressure: Optional[float] = None
     altitude: Optional[float] = None
 
-    light_raw: Optional[int] = None
-    light_percent: Optional[int] = None
-    light_category: Optional[str] = None
-
     gas_resistance: Optional[float] = None
     air_quality_label: Optional[str] = None
 

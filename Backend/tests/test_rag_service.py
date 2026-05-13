@@ -6,8 +6,7 @@ def test_rag_returns_relevant_guidelines():
 
     latest = {
         "temperature": 26.5,
-        "humidity": 62,
-        "light_category": "Dark"
+        "humidity": 62
     }
 
     summary = {
@@ -28,7 +27,6 @@ def test_rag_documents_have_required_fields():
     latest = {
         "temperature": 22,
         "humidity": 45,
-        "light_category": "Bright"
     }
 
     summary = {

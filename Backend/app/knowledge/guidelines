@@ -25,13 +25,13 @@
     "content": "If humidity remains elevated while temperature is stable, the likely recommendation is improved ventilation or airflow rather than describing the room as unsafe."
   },
   {
-    "id": "gym_light_experimental",
-    "topic": "light",
-    "content": "The light sensor in this prototype is not calibrated in lux and should be treated as experimental. It should not be used as a primary risk factor in AI recommendations."
+    "id": "bme680_gas_resistance",
+    "topic": "air_quality",
+    "content": "The BME680 gas resistance value can be used as a prototype indicator of air quality. Higher gas resistance usually suggests cleaner air, while lower values may suggest poorer air quality. It should be interpreted carefully and not as a certified air quality measurement."
   },
   {
-    "id": "bme680_future_extension",
+    "id": "gym_air_quality_recommendation",
     "topic": "air_quality",
-    "content": "A future BME680 sensor could add gas resistance measurements, which may support more advanced indoor air quality assessment. Until then, air quality conclusions should be conservative."
+    "content": "If gas resistance is low or the air quality label is Poor, recommendations should focus on ventilation, airflow, reducing stuffiness and monitoring the environment over time."
   }
 ]

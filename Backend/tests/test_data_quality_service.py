@@ -31,3 +31,14 @@ def test_invalid_pressure_is_rejected():
     )
 
     assert DataQualityService.is_valid_reading(reading) is False
+
+def test_valid_bme680_reading_is_accepted():
+    reading = SimpleNamespace(
+        temperature=24.0,
+        humidity=50.0,
+        pressure=1005.0,
+        gas_resistance=35000.0,
+        air_quality_label="Moderate"
+    )
+
+    assert DataQualityService.is_valid_reading(reading) is True

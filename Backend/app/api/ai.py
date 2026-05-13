@@ -22,9 +22,6 @@ def serialize_latest(latest):
         "humidity": latest.humidity,
         "pressure": latest.pressure,
         "altitude": latest.altitude,
-        "light_raw": latest.light_raw,
-        "light_percent": latest.light_percent,
-        "light_category": latest.light_category,
         "gas_resistance": latest.gas_resistance,
         "air_quality_label": latest.air_quality_label,
     }

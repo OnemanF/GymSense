@@ -12,10 +12,6 @@ class SensorReadingCreate(BaseModel):
     pressure: Optional[float] = None
     altitude: Optional[float] = None
 
-    lightRaw: Optional[int] = None
-    lightPercent: Optional[int] = None
-    lightCategory: Optional[str] = None
-
     gasResistance: Optional[float] = None
     airQualityLabel: Optional[str] = None
 
@@ -29,10 +25,6 @@ class SensorReadingRead(BaseModel):
     humidity: Optional[float] = None
     pressure: Optional[float] = None
     altitude: Optional[float] = None
-
-    light_raw: Optional[int] = None
-    light_percent: Optional[int] = None
-    light_category: Optional[str] = None
 
     gas_resistance: Optional[float] = None
     air_quality_label: Optional[str] = None

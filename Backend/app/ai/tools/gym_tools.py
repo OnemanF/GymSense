@@ -19,9 +19,6 @@ def serialize_measurement(reading) -> dict[str, Any] | None:
         "humidity": reading.humidity,
         "pressure": reading.pressure,
         "altitude": reading.altitude,
-        "light_raw": reading.light_raw,
-        "light_percent": reading.light_percent,
-        "light_category": reading.light_category,
         "gas_resistance": reading.gas_resistance,
         "air_quality_label": reading.air_quality_label,
     }
@@ -56,13 +53,14 @@ def get_measurement_summary(hours: int = 24) -> str:
 
 @tool
 def search_gym_environment_guidelines() -> str:
-    """Gets guideline snippets for gym indoor climate, comfort, humidity, temperature and light."""
+    """Gets guideline snippets for gym indoor climate, comfort, humidity, temperature and air quality."""
     rag_service = RAGService()
 
     fake_latest = {
         "temperature": 22,
         "humidity": 65,
-        "light_category": "Low",
+        "gas_resistance": 15000,
+        "air_quality_label": "Poor",
     }
 
     fake_summary = {

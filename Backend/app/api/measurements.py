@@ -23,9 +23,6 @@ def create_measurement(
         humidity=payload.humidity,
         pressure=payload.pressure,
         altitude=payload.altitude,
-        light_raw=payload.lightRaw,
-        light_percent=payload.lightPercent,
-        light_category=payload.lightCategory,
         gas_resistance=payload.gasResistance,
         air_quality_label=payload.airQualityLabel,
         raw_payload=payload.model_dump()

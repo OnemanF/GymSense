@@ -11,9 +11,6 @@ def test_invalid_measurement_is_rejected():
         "humidity": 100.0,
         "pressure": -172.0,
         "altitude": 0,
-        "lightRaw": 0,
-        "lightPercent": 0,
-        "lightCategory": "Dark"
     }
 
     response = client.post("/api/measurements", json=payload)

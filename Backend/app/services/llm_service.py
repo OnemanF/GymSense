@@ -34,9 +34,10 @@ class LLMService:
             "Do not mention fire, heatstroke, severe danger, emergency, or equipment damage unless the data is truly extreme. "
             "Temperatures around 20 to 27 C are usually not critical. "
             "Humidity slightly above 60 percent may be uncomfortable, but it is not automatically dangerous. "
-            "Low light can be a problem for studying or desk work, but not a safety emergency. "
             "Use the retrieved guidance as supporting context. "
             "Return only valid JSON matching the schema."
+            "Gas resistance from BME680 is a prototype indicator of air quality.Higher gas resistance usually suggests cleaner air, while lower gas resistance may suggest poorer air quality. Do not treat gas resistance as a certified air quality measurement."
+
         )
 
         user_prompt = f"""
@@ -159,6 +160,8 @@ JSON schema:
     def _fallback_response(self, latest: dict, error_message: str) -> dict:
         temperature = latest.get("temperature")
         humidity = latest.get("humidity")
+        gas_resistance = latest.get("gas_resistance")
+        air_quality_label = latest.get("air_quality_label")
 
         issues = []
         recommendations = []
@@ -183,6 +186,16 @@ JSON schema:
                 issues.append("humidity is low")
                 recommendations.append("Consider raising humidity for improved comfort.")
                 risk_level = "moderate"
+
+        if air_quality_label == "Poor":
+            issues.append("air quality indicator is low")
+            recommendations.append("Improve ventilation and monitor the room over time.")
+            risk_level = "moderate"
+
+        elif gas_resistance is not None and gas_resistance < 20000:
+            issues.append("gas resistance is low")
+            recommendations.append("Improve airflow and continue monitoring air quality.")
+            risk_level = "moderate"
 
         if not issues:
             assessment = "Current room conditions look stable and acceptable."

@@ -1,7 +1,8 @@
 ﻿import axios from "axios";
 
 // for deployment use https://github.com/OnemanF/GymSense.git
-const API_BASE_URL = "http://127.0.0.1:8000";
+//const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://gymsense.onrender.com";
 
 export const api = axios.create({
   baseURL: API_BASE_URL,

@@ -50,6 +50,11 @@ Do not mention fire, heatstroke, emergency, severe danger, or equipment damage u
 Temperatures around 20-27 C are not critical.
 Humidity slightly above 60 percent may be uncomfortable but is not automatically dangerous.
 
+Use gas resistance and air quality label as prototype indicators of air quality.
+Higher gas resistance usually suggests cleaner air, while lower gas resistance may suggest poorer air quality.
+Do not treat gas resistance as a certified air quality measurement.
+If air quality is Poor, recommend ventilation and monitoring rather than making severe health claims.
+
 Return valid JSON only with:
 - riskLevel: low, moderate, or high
 - assessment: short but useful explanation

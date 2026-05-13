@@ -69,12 +69,19 @@ class MeasurementSummaryService:
                 "avgPressure": None,
                 "minPressure": None,
                 "maxPressure": None,
-                "latestLightCategory": None,
+                "avgGasResistance": None,
+                "minGasResistance": None,
+                "maxGasResistance": None,
+                "latestAirQualityLabel": None,
             }
 
-        temperatures = [r.temperature for r in readings]
-        humidities = [r.humidity for r in readings]
-        pressures = [r.pressure for r in readings]
+        temperatures = [r.temperature for r in readings if r.temperature is not None]
+        humidities = [r.humidity for r in readings if r.humidity is not None]
+        pressures = [r.pressure for r in readings if r.pressure is not None]
+        gas_resistances = [
+            r.gas_resistance for r in readings
+            if r.gas_resistance is not None
+        ]
 
         latest = readings[-1]
 
@@ -85,13 +92,16 @@ class MeasurementSummaryService:
             "hours": hours,
             "count": len(readings),
             "avgTemperature": avg(temperatures),
-            "minTemperature": min(temperatures),
-            "maxTemperature": max(temperatures),
+            "minTemperature": min(temperatures) if temperatures else None,
+            "maxTemperature": max(temperatures) if temperatures else None,
             "avgHumidity": avg(humidities),
-            "minHumidity": min(humidities),
-            "maxHumidity": max(humidities),
+            "minHumidity": min(humidities) if humidities else None,
+            "maxHumidity": max(humidities) if humidities else None,
             "avgPressure": avg(pressures),
-            "minPressure": min(pressures),
-            "maxPressure": max(pressures),
-            "latestLightCategory": latest.light_category,
+            "minPressure": min(pressures) if pressures else None,
+            "maxPressure": max(pressures) if pressures else None,
+            "avgGasResistance": avg(gas_resistances),
+            "minGasResistance": min(gas_resistances) if gas_resistances else None,
+            "maxGasResistance": max(gas_resistances) if gas_resistances else None,
+            "latestAirQualityLabel": latest.air_quality_label,
         }
