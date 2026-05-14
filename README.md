@@ -11,8 +11,8 @@ It focuses on temperature, humidity, pressure and relative light level. The AI p
 ## Features
 
 - ESP32 sensor device
-- BME280 temperature, humidity and pressure sensor
-- LDR analog light sensor
+- BME680 environmental sensor
+- Gas resistance / prototype air quality monitoring
 - FastAPI backend with REST API
 - PostgreSQL database on Render
 - React frontend dashboard
