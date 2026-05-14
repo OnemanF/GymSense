@@ -1,37 +1,53 @@
-﻿[
+﻿
+[
   {
     "id": "gym_temperature_comfort",
     "topic": "temperature",
-    "content": "In a gym environment, temperatures around 18 to 24 degrees Celsius are generally comfortable for most training sessions."
+    "content": "Temperatures between 18 and 24 degrees Celsius are generally considered comfortable for indoor gym environments and most training situations."
   },
+
   {
     "id": "gym_warm_conditions",
     "topic": "temperature",
-    "content": "Temperatures between 25 and 27 degrees Celsius may feel warm during intense exercise, but should normally be described as a comfort issue, not a dangerous situation."
+    "content": "Temperatures around 25 to 27 degrees Celsius may feel warm during intense exercise, but should mainly be interpreted as a comfort-related condition rather than a dangerous situation."
   },
+
   {
     "id": "gym_high_temperature",
     "topic": "temperature",
-    "content": "If gym temperature rises above 28 degrees Celsius, users may experience reduced comfort during hard training. Recommendations should focus on airflow, ventilation, hydration and monitoring."
+    "content": "When gym temperatures rise above 28 degrees Celsius, users may experience reduced comfort and increased stuffiness during training. Recommendations should focus on airflow, ventilation and hydration."
   },
+
   {
     "id": "gym_humidity_comfort",
     "topic": "humidity",
-    "content": "Relative humidity around 40 to 60 percent is generally acceptable in a gym. Humidity slightly above 60 percent can feel stuffy during training."
+    "content": "Relative humidity between 40 and 60 percent is generally acceptable for indoor gym environments. Humidity above this range may feel stuffy during physical activity."
   },
+
   {
     "id": "gym_humidity_ventilation",
     "topic": "humidity",
-    "content": "If humidity remains elevated while temperature is stable, the likely recommendation is improved ventilation or airflow rather than describing the room as unsafe."
+    "content": "If humidity remains elevated while temperature stays stable, recommendations should focus on improved airflow and ventilation rather than describing the environment as unsafe."
   },
+
   {
     "id": "bme680_gas_resistance",
+    "source": "Bosch Sensortec BME680 Datasheet",
     "topic": "air_quality",
-    "content": "The BME680 gas resistance value can be used as a prototype indicator of air quality. Higher gas resistance usually suggests cleaner air, while lower values may suggest poorer air quality. It should be interpreted carefully and not as a certified air quality measurement."
+    "content": "The Bosch BME680 sensor supports indoor air quality estimation through gas resistance measurements. Higher gas resistance values may indicate cleaner air, while lower values may suggest poorer air quality conditions."
   },
+
+  {
+    "id": "bme680_limitations",
+    "source": "Bosch Sensortec BME680 Datasheet",
+    "topic": "air_quality",
+    "content": "In this project, gas resistance is treated as an experimental indoor air quality indicator rather than a certified VOC or medical air quality measurement."
+  },
+
   {
     "id": "gym_air_quality_recommendation",
     "topic": "air_quality",
-    "content": "If gas resistance is low or the air quality label is Poor, recommendations should focus on ventilation, airflow, reducing stuffiness and monitoring the environment over time."
+    "content": "If gas resistance values are low or the air quality label is classified as Poor, recommendations should focus on ventilation, airflow and monitoring the environment over time."
   }
 ]
+

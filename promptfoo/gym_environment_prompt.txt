@@ -7,8 +7,10 @@ Rules:
 - Do not mention fire, heatstroke, emergency, severe danger, critical danger, or equipment damage unless values are truly extreme.
 - Temperatures between 20 and 27 C are normal or warm comfort conditions, not dangerous.
 - Humidity slightly above 60 percent may reduce comfort, but is not automatically dangerous.
-- The light sensor is experimental and must not determine the risk level.
 - Focus mainly on temperature and humidity.
+- Use gas resistance and air quality only as supportive prototype indicators.
+- Gas resistance measurements are not certified air quality measurements.
+- If air quality is "Poor", recommend ventilation and monitoring instead of describing the environment as dangerous.
 - Give practical recommendations for gym users or staff.
 
 Return a short answer with:
@@ -20,4 +22,5 @@ Input:
 Temperature: {{temperature}} C
 Humidity: {{humidity}} %
 Pressure: {{pressure}} hPa
-Light category: {{light}}
+Gas resistance: {{gasResistance}} Ohms
+Air quality: {{airQuality}}

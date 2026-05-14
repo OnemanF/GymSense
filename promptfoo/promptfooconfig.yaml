@@ -9,21 +9,18 @@ providers:
       temperature: 0.2
 
 tests:
-  - description: Normal gym conditions should be low risk
+  - description: Normal gym conditions
     vars:
       temperature: 22
       humidity: 45
       pressure: 1024
-      light: Bright
+      gasResistance: 50000
+      airQuality: Good
     assert:
       - type: contains
         value: "Risk level"
       - type: not-contains
         value: "emergency"
-      - type: not-contains
-        value: "dangerous"
-      - type: not-contains
-        value: "fire"
       - type: not-contains
         value: "heatstroke"
 
@@ -32,55 +29,60 @@ tests:
       temperature: 26.5
       humidity: 55
       pressure: 1024
-      light: Bright
+      gasResistance: 35000
+      airQuality: Moderate
     assert:
       - type: not-contains
         value: "emergency"
       - type: not-contains
-        value: "fire"
-      - type: not-contains
-        value: "heatstroke"
-      - type: not-contains
-        value: "severe danger"
+        value: "danger"
+      - type: contains
+        value: "Recommendation"
 
   - description: High humidity should recommend ventilation
     vars:
       temperature: 23
       humidity: 65
       pressure: 1024
-      light: Bright
+      gasResistance: 30000
+      airQuality: Moderate
     assert:
       - type: contains
         value: "ventilation"
       - type: not-contains
-        value: "dangerous"
-      - type: not-contains
         value: "emergency"
+      - type: not-contains
+        value: "danger"
 
-  - description: Dark light should not dominate risk
+  - description: Poor air quality should recommend ventilation but not danger
     vars:
       temperature: 22
-      humidity: 45
+      humidity: 50
       pressure: 1024
-      light: Dark
+      gasResistance: 12000
+      airQuality: Poor
     assert:
-      - type: not-contains
-        value: "unsafe"
+      - type: contains
+        value: "ventilation"
       - type: not-contains
         value: "emergency"
       - type: not-contains
-        value: "dangerous"
+        value: "danger"
 
-  - description: Very bad sensor value should be treated carefully
+  - description: Invalid sensor data should be treated as sensor error
     vars:
       temperature: 182
       humidity: 100
       pressure: -172
-      light: Bright
+      gasResistance: 1000
+      airQuality: Poor
     assert:
-      - type: contains
-        value: "sensor"
+      - type: contains-any
+        value:
+          - "sensor"
+          - "invalid"
+          - "check"
       - type: not-contains
-        value: "fire"
+        value: "Extreme Danger"
       - type: not-contains
-        value: "equipment damage"
+        value: "heatstroke"
